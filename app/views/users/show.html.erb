@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @user.name %></h1>
+
+<% if @user.playlists.empty? %>
+  <p>This user doesn't have playlists yet! Add a playlist with the button below.</p>
+<% else %>
+  <h3>Playlists:</h3>
+
+  <ul>
+    <% @user.playlists.each do |playlist| %>
+      <li><%= link_to playlist.name, playlist %> - Created on <%= playlist.created_at_formatted %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= link_to 'Edit Profile', edit_user_path(@user) %> |
+<%= link_to 'Destroy Account', @user, method: :delete, data: { confirm: 'Are you sure?' } %> 

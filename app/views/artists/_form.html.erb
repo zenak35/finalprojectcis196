@@ -1,0 +1,40 @@
+<%= form_with(model: artist, local: true) do |form| %>
+  <% if artist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(artist.errors.count, "error") %> prohibited this artist from being saved:</h2>
+
+      <ul>
+      <% artist.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :artist_name, class: 'form-control' %>
+  </div>
+
+  <br>
+
+  <h4>Create Tracks for Artist (optional):</h4>
+    <%= form.fields_for :tracks do |track_form| %>
+       <div class="field">
+         <%= track_form.label :name %>
+         <%= track_form.text_field :name %>
+       </div>
+     <% end %>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+
+  
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+
+
+<% end %>

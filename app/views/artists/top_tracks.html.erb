@@ -1,0 +1,32 @@
+<h1><%= link_to @artist.name, @artist %>'s Top Tracks</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Track Name</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @artist.top_tracks.each.with_index(1) do |track_name, index| %>
+      <tr>
+        <th scope="row"><%= index %></th>
+        <td><%= track_name %></td>
+        <td>
+          <% track = Track.find_by(artist: @artist, name: track_name) %>
+          <% if track %>
+            <%= link_to 'View Track', artist_track_path(@artist, track) %>
+          <% else %>
+            <%= form_with model: [@artist, @new_track] do |f| %>
+              <%= f.hidden_field :artist_id, value: @artist.id %>
+              <%= f.hidden_field :name, value: track_name %>
+              <%= f.submit 'Create Track', class: 'btn btn-primary' %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

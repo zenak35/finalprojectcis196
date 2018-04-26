@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= link_to @artist.name, @artist %>'s Albums</h1>
+
+<div class="row">
+  <% @albums.each do |album| %>
+    <div class="col-md-4 text-center">
+      <%= link_to album.name, artist_album_path(@artist, album) %>
+    </div>
+  <% end %>
+</div>
+
+<br>
+
+<%= link_to 'New Album', new_artist_album_path(@artist) %>

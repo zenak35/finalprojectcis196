@@ -1,0 +1,11 @@
+<h1>All Tracks</h1>
+
+<div class="row">
+  <% @tracks.each do |track| %>
+    <div class="col-md-4 text-center">
+      <%= link_to track.name, artist_track_path(track.artist, track) %> by <%= link_to track.artist.name, track.artist %><br>
+      <%= content_tag :iframe, '', src: "https://open.spotify.com/embed?uri=#{track.spotify_uri}", width: 300, height: 380, frameborder: false %>
+    </div>
+    <br>
+  <% end %>
+</div>

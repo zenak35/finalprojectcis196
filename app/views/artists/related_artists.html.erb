@@ -1,0 +1,32 @@
+<h1>Artists Related to <%= link_to @artist.name, @artist %></h1>
+
+<br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Artist Name</th>
+      <th scope="col"></th>
+  </thead>
+
+  <tbody>
+    <% @artist.related_artists.each.with_index(1) do |artist_name, index| %>
+      <tr>
+        <th scope="row"><%= index %></th>
+        <td><%= artist_name %></td>
+        <td>
+          <% artist = Artist.find_by(name: artist_name) %>
+          <% if artist %>
+            <%= link_to 'View Artist', artist %>
+          <% else %>
+            <%= form_with model: @new_artist do |f| %>
+              <%= f.hidden_field :name, value: artist_name %>
+              <%= f.submit 'Create Artist', class: 'btn btn-primary' %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
