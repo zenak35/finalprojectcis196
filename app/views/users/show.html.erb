@@ -3,7 +3,13 @@
 <h1><%= @user.first_name %></h1>
 
 <% if @user.playlists.empty? %>
-  <p>This user doesn't have playlists yet! Add a playlist with the button below.</p>
+  <p>You don't have playlists yet! Add a playlist with the below.</p>
+  <br>
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <%= render 'playlists/form', playlist: @playlist %>
+    </div>
+  </div>
 <% else %>
   <h3>Playlists:</h3>
 

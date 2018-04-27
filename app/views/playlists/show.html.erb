@@ -2,9 +2,9 @@
 
 <div class="container">
     <div class="page-header">
-      <p></p><%=@playlist.name %><br>
-      <%= @playlist.user.first_name %><br>
-      <%= @playlist.created_at_formatted %><br>
+      <strong>Playlist Name:   </strong><%=@playlist.name %><br>
+      <strong>Playlist Creator:   </strong><%= @playlist.user.first_name %><br>
+      <strong>Created On:   </strong><%= @playlist.created_at_formatted %><br>
     </div>
 </div>
 

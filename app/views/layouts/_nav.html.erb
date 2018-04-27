@@ -12,6 +12,7 @@
           <li class="nav-item"><%= link_to 'Tracks', tracks_path, class: 'nav-item nav-link' %></li>
           <li class="nav-item"><%= link_to 'Albums', albums_path, class: 'nav-item nav-link' %></li>
           <li class="nav-item"><%= link_to 'Playlists', playlists_path, class: 'nav-item nav-link' %>
+          <li class="nav-item"><%= link_to 'Profile', current_user, class: 'nav-item nav-link' %>
           <li class="nav-item"><%= link_to 'Log out', '/logout', method: :delete, class: 'nav-link' %></li>
         <% else %>
         <%# Only display the sign up and log in links if no user is logged in %>
