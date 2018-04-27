@@ -1,6 +1,6 @@
 class TracksController < ApplicationController
   before_action :find_artist, except: [:all]
-  before_action :find_album , except: [:all]
+  #before_action :find_album , except: [:all, :new]
   before_action :set_track, only: [:show, :destroy]
   before_action :authenticate_user
 
@@ -17,6 +17,7 @@ class TracksController < ApplicationController
 
   def all
     @tracks = Track.joins(:artist).order('artists.name')
+    @new_album = Album.new
   end
 
   # GET /tracks/new
@@ -57,9 +58,6 @@ class TracksController < ApplicationController
       @artist = Artist.find(params[:artist_id])
     end
 
-     def find_album
-      @album = Album.find(params[:album_id])
-    end
     # Use callbacks to share common setup or constraints between actions.
     def set_track
       @track = Track.find(params[:id])

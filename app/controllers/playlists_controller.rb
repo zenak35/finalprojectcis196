@@ -1,11 +1,12 @@
 class PlaylistsController < ApplicationController
-  before_action :set_playlist, only: [:show, :edit, :update, :destroy]
+  before_action :set_playlist, only: [:show, :edit, :update, :destroy, :add_track]
   before_action :authenticate_user
 
   # GET /playlists
   # GET /playlists.json
   def index
-    @playlists = Playlist.all
+    @user = current_user
+    @playlists = current_user.playlists
   end
 
   # GET /playlists/1
@@ -23,10 +24,14 @@ class PlaylistsController < ApplicationController
     redirect_to root_path unless @playlist.user == current_user
   end
 
+  def add_track
+    @all_tracks = Track.joins(:artist).order('artists.name')
+  end
+
   # POST /playlists
   # POST /playlists.json
   def create
-    @playlist = current_user.playlist.new(playlist_params)
+    @playlist = current_user.playlists.new(playlist_params)
 
     if @playlist.save
       redirect_to @playlist.user
@@ -60,6 +65,7 @@ class PlaylistsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def playlist_params
-      params.require(:playlist).permit(:user_id, :name)
+      params.require(:playlist).permit(:user_id, :name, tracks_attributes: [:name])
     end
 end
+

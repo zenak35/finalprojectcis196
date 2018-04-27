@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 
-
+ruby '2.4.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 gem 'execjs'
@@ -12,9 +12,15 @@ gem 'bootstrap', '4.0.0'
 
 gem 'jquery-rails', '4.3.1'
 
-gem 'sqlite3'
+group :development do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
+end
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

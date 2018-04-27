@@ -1,11 +1,33 @@
 <h1>All Tracks</h1>
 
-<div class="row">
-  <% @tracks.each do |track| %>
-    <div class="col-md-4 text-center">
-      <%= link_to track.name, artist_track_path(track.artist, track) %> by <%= link_to track.artist.name, track.artist %><br>
-      <%= content_tag :iframe, '', src: "https://open.spotify.com/embed?uri=#{track.spotify_uri}", width: 300, height: 380, frameborder: false %>
-    </div>
-    <br>
-  <% end %>
-</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Track Name</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tracks.each.with_index(1) do |track, index| %>
+      <tr>
+        <th scope="row"><%= index %></th>
+        <td><%= link_to track.name, artist_track_path(track.artist, track) %> by <%= link_to track.artist.name, track.artist %></td>
+        <td><%= content_tag :iframe, '', src: "https://open.spotify.com/embed?uri=#{track.spotify_uri}", width: 300, height: 380, frameborder: false %></td>
+        <td>
+          <% album = Album.find_by(artist: track.artist, name: track.find_album) %>
+          <% if album %>
+            <%= link_to 'View Album', artist_album_path(track.artist, album) %>
+          <% else %>
+            <%= form_with model: [track.artist, @new_album] do |f| %>
+              <%= f.hidden_field :artist_id, value: track.artist.id %>
+              <%= f.hidden_field :name, value: track.find_album %>
+              <%= f.submit 'Create Album', class: 'btn btn-primary' %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

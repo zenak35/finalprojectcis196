@@ -1,6 +1,7 @@
 class Playlist < ApplicationRecord
   belongs_to :user
   has_many :tracks
+  accepts_nested_attributes_for :tracks, reject_if: :all_blank
   validates :name, presence: true, uniqueness: true
 
   def created_at_formatted

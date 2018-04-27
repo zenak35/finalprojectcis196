@@ -1,24 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Playlists</h1>
+<h1><%= link_to @user.first_name, @user %>'s Playlists </h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>User</th>
-      <th>Name</th>
-      <th colspan="3"></th>
+      <th scope="col"></th>
+      <th scope="col">Playlist Name</th>
+      <th scope="col">Creator</th>
+      <th scope="col">Date Created</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @playlists.each do |playlist| %>
+    <% @playlists.each.with_index(1) do |playlist, index| %>
       <tr>
-        <td><%= playlist.user %></td>
-        <td><%= playlist.name %></td>
-        <td><%= link_to 'Show', playlist %></td>
-        <td><%= link_to 'Edit', edit_playlist_path(playlist) %></td>
-        <td><%= link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th scope="row"><%= index %></th>
+        <td><%= link_to playlist.name, playlist %></td>
+        <td>
+          <%= playlist.user.first_name %>
+        </td>
+         <td>
+          <%= playlist.created_at_formatted %>
+        </td>
       </tr>
     <% end %>
   </tbody>

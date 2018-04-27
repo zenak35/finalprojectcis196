@@ -1,0 +1,33 @@
+<h1>All Tracks</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Track Name</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @all_tracks.each.with_index(1) do |track, index| %>
+      <tr>
+        <th scope="row"><%= index %></th>
+        <td><%= link_to track.name, artist_track_path(track.artist, track) %> by <%= link_to track.artist.name, track.artist %></td>
+        <td><%= content_tag :iframe, '', src: "https://open.spotify.com/embed?uri=#{track.spotify_uri}", width: 300, height: 380, frameborder: false %></td>
+        <td>
+          <% in_track = @playlist.tracks.include? track %>
+          <% if in_track %>
+            <p> You already have this song in your playlist!! </p>>
+          <% else %>
+            <%= form_with model: [@playlist, track] do |f| %>
+              <%= f.hidden_field :playlist_id, value: @playlist.id %>
+              <%= f.hidden_field :name, value: track.name %>
+              <%= f.submit 'Add to Playlist!', class: 'btn btn-primary' %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

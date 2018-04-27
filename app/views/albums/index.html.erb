@@ -6,6 +6,8 @@
   <% @albums.each do |album| %>
     <div class="col-md-4 text-center">
       <%= link_to album.name, artist_album_path(@artist, album) %>
+      <br>
+      <%= content_tag :iframe, '', src: "https://open.spotify.com/embed?uri=#{album.spotify_uri}", width: 300, height: 380, frameborder: false %>
     </div>
   <% end %>
 </div>

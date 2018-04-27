@@ -1,5 +1,6 @@
 class Track < ApplicationRecord
   belongs_to :artist
+  belongs_to :playlist, optional: true
   validates :name, presence: true
   validates_uniqueness_of :name, scope: [:artist_id]
   validate :track_in_db
@@ -12,6 +13,12 @@ class Track < ApplicationRecord
     tracks = track_search
     return if tracks.empty?
     tracks.first.uri
+  end
+
+  def find_album
+    tracks = track_search
+    return if tracks.empty?
+    tracks.first.album.name
   end
 
   private

@@ -11,6 +11,13 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :artist_name, class: 'form-control' %>
+  </div>
+
+  <br>
+
   <div class="actions">
     <%= form.submit 'Create Playlist', class: 'btn btn-primary' %>
   </div>

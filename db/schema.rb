@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180426012647) do
+ActiveRecord::Schema.define(version: 20180427082624) do
 
   create_table "albums", force: :cascade do |t|
     t.string "name"
@@ -22,15 +22,6 @@ ActiveRecord::Schema.define(version: 20180426012647) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
-    t.integer "playlist_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["playlist_id"], name: "index_artists_on_playlist_id"
-  end
-
-  create_table "controllers", force: :cascade do |t|
-    t.string "welcome"
-    t.string "index"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -46,9 +37,11 @@ ActiveRecord::Schema.define(version: 20180426012647) do
   create_table "tracks", force: :cascade do |t|
     t.string "name"
     t.integer "artist_id"
+    t.integer "playlist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_tracks_on_artist_id"
+    t.index ["playlist_id"], name: "index_tracks_on_playlist_id"
   end
 
   create_table "users", force: :cascade do |t|

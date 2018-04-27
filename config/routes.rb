@@ -23,6 +23,12 @@ Rails.application.routes.draw do
   get '/tracks', to: 'tracks#all'
   get '/albums', to: 'albums#all'
   resources :users
-  resources :playlists
+  resources :playlists do
+    member do
+      get 'add_track'
+    end
+    resources :tracks, except: [:edit, :update]
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
+

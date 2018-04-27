@@ -4,7 +4,8 @@ RSpec.describe "tracks/new", type: :view do
   before(:each) do
     assign(:track, Track.new(
       :name => "MyString",
-      :artist => nil
+      :artist => nil,
+      :playlist => nil
     ))
   end
 
@@ -16,6 +17,8 @@ RSpec.describe "tracks/new", type: :view do
       assert_select "input[name=?]", "track[name]"
 
       assert_select "input[name=?]", "track[artist_id]"
+
+      assert_select "input[name=?]", "track[playlist_id]"
     end
   end
 end

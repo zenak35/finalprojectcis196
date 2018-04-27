@@ -6,13 +6,12 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
-  # Do not eager load code on boot.
-  config.eager_load = false
-
-  #RSpotify authentication code
   config.read_encrypted_secrets = true
   RSpotify::authenticate(Rails.application.secrets.spotify_client_id,
                        Rails.application.secrets.spotify_client_secret)
+
+  # Do not eager load code on boot.
+  config.eager_load = false
 
   # Show full error reports.
   config.consider_all_requests_local = true

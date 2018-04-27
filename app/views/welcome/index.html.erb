@@ -1,4 +1,7 @@
 <% if logged_in? %>
+<h4>Hey there! Create your own playlist below or browse our super cool song library!<h4>
+  <br>
+
   <div class="row">
     <div class="col-lg-6 offset-lg-3">
       <%= render 'playlists/form', playlist: @playlist %>
@@ -11,7 +14,7 @@
         <p class="text-center">There aren't any playlists yet, you should create one!</p>
       <% else %>
         <% @playlists.each do |playlist| %>
-          <%= link_to playlist.name, playlist%>
+            <%= link_to playlist.name, playlist%>
           <br>
         <% end %>
       <% end %>
