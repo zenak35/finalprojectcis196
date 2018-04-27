@@ -26,8 +26,8 @@ Rails.application.routes.draw do
   resources :playlists do
     member do
       get 'add_track'
+      post 'add_track'
     end
-    resources :tracks, except: [:edit, :update]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

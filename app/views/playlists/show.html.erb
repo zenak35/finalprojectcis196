@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<div class="row">
-    <div class="col-md-5 text-center">
-      <%= @playlist.name %><br>
+<div class="container">
+    <div class="page-header">
+      <p></p><%=@playlist.name %><br>
       <%= @playlist.user.first_name %><br>
       <%= @playlist.created_at_formatted %><br>
     </div>
@@ -20,14 +20,14 @@
 	    <tr>
 	      <th scope="col"></th>
 	      <th scope="col">Track Name</th>
-	      <th scope="col"></th>
+	      <th scope="col">Artist Name</th>
 	  </thead>
 
 	  <tbody>
 	    <% @playlist.tracks.each.with_index(1) do |track, index| %>
 	      <tr>
 	        <th scope="row"><%= index %></th>
-	        <td><%= link_to track.name, track %></td>
+	        <td><%= link_to track.name, artist_track_path(track.artist, track) %></td>
 	        <td>
 	          <%= link_to track.artist.name, track.artist %>
 	        </td>

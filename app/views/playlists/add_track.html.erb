@@ -18,10 +18,10 @@
         <td>
           <% in_track = @playlist.tracks.include? track %>
           <% if in_track %>
-            <p> You already have this song in your playlist!! </p>>
+            <p> You already have this song in your playlist!! </p>
           <% else %>
-            <%= form_with model: [@playlist, track] do |f| %>
-              <%= f.hidden_field :playlist_id, value: @playlist.id %>
+            <%= form_with url: add_track_playlist_path do |f| %>
+              <%= f.hidden_field :track_id, value: track.id %>
               <%= f.hidden_field :name, value: track.name %>
               <%= f.submit 'Add to Playlist!', class: 'btn btn-primary' %>
             <% end %>

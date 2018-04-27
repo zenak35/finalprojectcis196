@@ -26,6 +26,11 @@ class PlaylistsController < ApplicationController
 
   def add_track
     @all_tracks = Track.joins(:artist).order('artists.name')
+    if params[:track_id].present?
+      found_track = Track.find(params[:track_id])
+      @playlist.tracks << found_track unless @playlist.tracks.include?(found_track)
+      redirect_to "/playlists/#{@playlist.id}"
+    end
   end
 
   # POST /playlists

@@ -8,9 +8,9 @@
     <div class="collapse navbar-collapse" id="navbar_content">
       <div class="navbar-nav ml-auto">
         <% if logged_in? %>
-          <li class="nav-item"><%= link_to 'Artists', artists_path, class: 'nav-item nav-link' %></li>>
-          <li class="nav-item"><%= link_to 'Tracks', tracks_path, class: 'nav-item nav-link' %></li>>
-          <li class="nav-item"><%= link_to 'Albums', albums_path, class: 'nav-item nav-link' %></li>>
+          <li class="nav-item"><%= link_to 'Artists', artists_path, class: 'nav-item nav-link' %></li>
+          <li class="nav-item"><%= link_to 'Tracks', tracks_path, class: 'nav-item nav-link' %></li>
+          <li class="nav-item"><%= link_to 'Albums', albums_path, class: 'nav-item nav-link' %></li>
           <li class="nav-item"><%= link_to 'Playlists', playlists_path, class: 'nav-item nav-link' %>
           <li class="nav-item"><%= link_to 'Log out', '/logout', method: :delete, class: 'nav-link' %></li>
         <% else %>
